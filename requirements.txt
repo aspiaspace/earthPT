@@ -1,0 +1,17 @@
+datasets==2.13.1
+gudhi==3.7.1
+h5py==3.8.0
+kmapper==2.0.1
+matplotlib==3.7.1
+multiprocess==0.70.14
+numpy==1.24.3
+Requests==2.31.0
+scikit_learn==1.2.2
+scipy==1.11.1
+tiktoken==0.3.0
+torch==2.0.1
+tqdm==4.65.0
+traces==0.6.0
+transformers==4.30.2
+umap_learn==0.5.3
+wandb==0.15.4
