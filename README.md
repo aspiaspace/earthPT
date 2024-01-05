@@ -1,9 +1,9 @@
-
-# earthPT
-
 <p align="center">
     <img src="assets/emoji.png" alt="earthPT" width="250"/>
 </p>
+
+# earthPT
+
 
 A simple repository for training time series large observation models. This
 repository began its life as Andrej Karpathy's
