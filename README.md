@@ -15,7 +15,7 @@ it is usable for time series data. `train.py` reproduces
 [EarthPT-700M](https://arxiv.org/abs/2309.07207) when trained on 14B time
 series 'tokens' of ClearSky EO data within the TL UK National Grid tile. When run,
 `train.py` takes ~5 days to achieve Chinchilla 🐭 completion on a single 8xA100
-40GB node.  Within `train.py` you will find ~300-line boilerplate training loop
+40GB node.  Within `train.py` you will find a ~300-line boilerplate training loop
 and within `model.py` you will find a ~300-line GPT model definition with an
 MLP tokeniser and a regressive loss.
 
@@ -46,7 +46,7 @@ You can find a plot with less angular momentum and further results in our paper
 ## pretrained weights
 
 You can find our weights for the EarthPT-700M model on
-[Zenodo](10.5281/zenodo.10489724).
+[Zenodo](https://doi.org/10.5281/zenodo.10489724).
 
 ## citation
 
