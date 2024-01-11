@@ -13,8 +13,8 @@ repository began its life as Andrej Karpathy's
 [nanoGPT](https://github.com/karpathy/nanoGPT), and has been altered so that
 it is usable for time series data. `train.py` reproduces
 [EarthPT-700M](https://arxiv.org/abs/2309.07207) when trained on 14B time
-series 'tokens' of ClearSky EO data on the TL UK National Grid tile. When run,
-`train.py` takes ~5 days to achieve Chinchilla completion on a single 8xA100
+series 'tokens' of ClearSky EO data within the TL UK National Grid tile. When run,
+`train.py` takes ~5 days to achieve Chinchilla 🐭 completion on a single 8xA100
 40GB node.  Within `train.py` you will find ~300-line boilerplate training loop
 and within `model.py` you will find a ~300-line GPT model definition with an
 MLP tokeniser and a regressive loss.
@@ -40,23 +40,29 @@ that it is fed:
     <img src="assets/3d.gif" alt="embeddings" width="400"/>
 </p>
 
-You can find a plot with less angular momentum and more results in our paper
+You can find a plot with less angular momentum and further results in our paper
 [here](https://arxiv.org/abs/2309.07207).
 
 ## pretrained weights
 
-You can find our weights for the EarthPT-700M model on [Zenodo](10.5281/zenodo.10489724).
+You can find our weights for the EarthPT-700M model on
+[Zenodo](10.5281/zenodo.10489724).
 
 ## citation
 
 If you find EarthPT useful in your work please do drop us a cite:
 
 ```bibtex
-@inproceedings{smith2023earthpt,
-    title={EarthPT: a foundation model for Earth Observation},
-    author={Smith, Michael J and Fleming, Luke and Geach, James},
-    booktitle={NeurIPS 2023 Workshop on Tackling Climate Change with Machine Learning},
-    url={https://www.climatechange.ai/papers/neurips2023/2},
-    year={2023}
+@article{ref_smith2023,
+    author = {Smith, M. J. and Fleming, L. and Geach, J. E.},
+    title = {{EarthPT: a foundation model for Earth Observation}},
+    journal = {arXiv},
+    year = {2023},
+    eprint = {2309.07207},
+    doi = {10.48550/arXiv.2309.07207}
 }
 ```
+
+This work is also in the
+[proceedings](https://www.climatechange.ai/papers/neurips2023/2) of the 2023
+CCAI NeurIPS workshop.
