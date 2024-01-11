@@ -1,11 +1,11 @@
 <p align="center">
-    <img src="assets/timeseries.png" alt="prediction" width="400"/>
+    <img src="assets/emoji.png" alt="earthPT" width="250"/>
 </p>
 
 # earthPT
 
 <p align="center">
-    <img src="assets/emoji.png" alt="earthPT" width="250"/>
+    <img src="assets/timeseries.png" alt="prediction" width="400"/>
 </p>
 
 A simple repository for training time series large observation models. This
