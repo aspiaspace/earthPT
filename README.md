@@ -1,11 +1,11 @@
 <p align="center">
-    <img src="assets/emoji.png" alt="earthPT" width="250"/>
+    <img src="assets/emoji.png" alt="earthPT" width="150"/>
 </p>
 
-# earthPT
+# EarthPT
 
 <p align="center">
-    <img src="assets/timeseries.png" alt="prediction" width="400"/>
+    <img src="assets/timeseries.png" alt="prediction" width="600"/>
 </p>
 
 A simple repository for training time series large observation models. This
@@ -30,4 +30,27 @@ Dependencies:
 
 - `pip install -r requirements.txt`
 
-## Results
+## results
+
+Our EarthPT-700M model is able to predict future satellite passes well into the
+future, and also learns semantically meaningful information about the timeseries
+that it is fed:
+
+<p align="center">
+    <img src="assets/3d.gif" alt="embeddings" width="400"/>
+</p>
+
+You can find a plot with less angular momentum and more results in our paper
+[here](https://arxiv.org/abs/2309.07207).
+
+If you find EarthPT useful in your work please do drop us a cite:
+
+```bibtex
+@inproceedings{smith2023earthpt,
+    title={EarthPT: a foundation model for Earth Observation},
+    author={Smith, Michael J and Fleming, Luke and Geach, James},
+    booktitle={NeurIPS 2023 Workshop on Tackling Climate Change with Machine Learning},
+    url={https://www.climatechange.ai/papers/neurips2023/2},
+    year={2023}
+}
+```
