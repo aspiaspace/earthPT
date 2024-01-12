@@ -55,7 +55,7 @@ If you find EarthPT useful in your work please do drop us a cite:
 ```bibtex
 @article{ref_smith2023,
     author = {Smith, M. J. and Fleming, L. and Geach, J. E.},
-    title = {{EarthPT: a foundation model for Earth Observation}},
+    title = {{EarthPT: a time series foundation model for Earth Observation}},
     journal = {arXiv},
     year = {2023},
     eprint = {2309.07207},
