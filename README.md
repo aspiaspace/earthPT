@@ -45,8 +45,8 @@ You can find a plot with less angular momentum and further results in our paper
 
 ## pretrained weights
 
-You can find our weights for the EarthPT-700M model on
-[Zenodo](https://doi.org/10.5281/zenodo.10489724).
+You can find our weights for all the EarthPT models on
+[HuggingFace](https://doi.org/10.57967/hf/1598) 🤗.
 
 ## citation
 
