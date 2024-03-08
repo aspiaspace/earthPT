@@ -20,14 +20,32 @@ import os
 import time
 import math
 import pickle
+from pathlib import Path
 from contextlib import nullcontext
+import einops
 
 import numpy as np
 import torch
 import matplotlib.pyplot as plt
 from torch.nn.parallel import DistributedDataParallel as DDP
+from torch.utils.data import Dataset, DataLoader
+from torch.utils.data.distributed import DistributedSampler
+from torchvision import datasets
 from torch.distributed import init_process_group, destroy_process_group
+from torchvision import transforms, io
 from tqdm import trange
+try:
+    import wandb
+    print("wandb detected, gonna log to that")
+    log_via_wandb = True
+except:
+    log_via_wandb = False
+try:
+    from codecarbon import EmissionsTracker
+    print("codecarbon detected, will log emissions")
+    log_emissions = True
+except:
+    log_emissions = False
 
 from model import GPTConfig, GPT
 

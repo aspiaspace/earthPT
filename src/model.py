@@ -17,6 +17,7 @@ from dataclasses import dataclass
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
+from einops.layers.torch import Rearrange
 
 # @torch.jit.script # good to enable when not using torch.compile, disable when using (our default)
 def new_gelu(x):
@@ -123,6 +124,7 @@ class GPTConfig:
     n_embd: int = 768
     n_chan: int = 1
     dropout: float = 0.0
+    patch_size: int = 16
     bias: bool = False # True: bias in Linears and LayerNorms, like GPT-2. False: a bit better and faster
 
 class GPT(nn.Module):
@@ -133,18 +135,32 @@ class GPT(nn.Module):
         self.config = config
 
         self.transformer = nn.ModuleDict(dict(
+            # This is for time series:
+            #wte = nn.Sequential(
+            #          nn.Linear(config.n_chan, config.n_embd),
+            #          nn.ReLU(),
+            #          nn.Linear(config.n_embd, config.n_embd),
+            #          nn.ReLU(),
+            #),
+            # This is for imagery:
             wte = nn.Sequential(
-                      nn.Linear(config.n_chan, config.n_embd),
-                      nn.ReLU(),
-                      nn.Linear(config.n_embd, config.n_embd),
-                      nn.ReLU(),
-                  ),
+                 nn.Linear(config.patch_size*config.patch_size*config.n_chan, config.n_embd),
+                 nn.ReLU(),
+                 nn.Linear(config.n_embd, config.n_embd),
+                 nn.ReLU(),
+            ),
             wpe = nn.Embedding(config.block_size, config.n_embd),
             drop = nn.Dropout(config.dropout),
             h = nn.ModuleList([Block(config) for _ in range(config.n_layer)]),
             ln_f = LayerNorm(config.n_embd, bias=config.bias),
         ))
-        self.lm_head = nn.Linear(config.n_embd, config.n_chan - 4, bias=False) # 4 channels of time
+        self.lm_head = nn.Sequential(
+            nn.Linear(config.n_embd, config.n_embd*2),
+            nn.ReLU(),
+            nn.Linear(config.n_embd*2, config.n_embd),
+            nn.ReLU(),
+            nn.Linear(config.n_embd, config.patch_size*config.patch_size*config.n_chan),
+        )
         # with weight tying when using torch.compile() some warnings get generated:
         # "UserWarning: functional_call was passed multiple values for tied weights.
         # This behavior is deprecated and will be an error in future versions"
@@ -183,7 +199,7 @@ class GPT(nn.Module):
 
     def forward(self, idx, targets=None):
         device = idx.device
-        b, t, ch = idx.size()
+        b, t, c = idx.size()
         assert t <= self.config.block_size, f"Cannot forward sequence of length {t}, block size is only {self.config.block_size}"
         pos = torch.arange(0, t, dtype=torch.long, device=device).unsqueeze(0) # shape (1, t)
 
